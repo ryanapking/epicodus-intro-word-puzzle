@@ -8,16 +8,24 @@
     <title>Template</title>
   </head>
   <body>
-    <div class="container">
+    <div id="gameplay" class="container">
       <form id="userInput">
         <input id="wordInput" type="text" placeholder="Enter a word">
         <button id="submitBtn" type="submit">Submit your word</button>
       </form>
-      <h3></h3>
+      <h3 id="wordDisplay"></h3>
       <form id="letterForm">
         <input id="letterInput" type="text" placeholder="Enter a vowel to show">
         <button id="letterBtn">Show vowel</button>
       </form>
+      <ul>Wrong guesses:
+
+      </ul>
+      <img id="hangmanImg" src="img/0.jpg"></img>
+    </div>
+    <div id="gameover" class="container">
+      <h3>Game Over!</h3>
+      <img src="img/6.jpg"></img>
     </div>
   </body>
 </html>
