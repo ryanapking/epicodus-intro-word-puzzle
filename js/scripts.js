@@ -1,43 +1,49 @@
-var word = "";
-var hiddenWord = "";
-var vowels = ["a", "e", "i", "o", "u"]
+function lettersToHide(tempString) {
+  var lettersArray = tempString.split("");
+  return lettersArray;
+}
 
-$(document).ready(function() {
-  $("#userInput").submit(function(event) {
-    hiddenWord = word = $("#wordInput").val();
-    replaceLetters();
-    displayString(hiddenWord);
-    $("#wordInput").val("");
-    event.preventDefault();
-  });
-
-  $("#vowelInput").submit(function(event) {
-    var letter = $("#letterInput").val();
-    if (letter.length === 1) {
-      showLetter(letter);
-    } else {
-      alert("please enter a single vowel");
-    }
-    $("#letterInput").val("");
-    event.preventDefault();
-  });
-});
-
-function replaceLetters() {
-  hiddenWord = word;
-  vowels.forEach(function(letter) {
+function maskWord(word, letterArray) {
+  var hiddenWord = word;
+  letterArray.forEach(function(letter) {
     hiddenWord = hiddenWord.replace(letter, "-");
   });
+  return hiddenWord;
 };
 
-function showLetter(letter) {
-  var i = vowels.indexOf(letter);
-  vowels.splice(i, 1);
-  replaceLetters();
-  displayString(hiddenWord);
+function removeArrayElement(letterArray, letter) {
+  var i = letterArray.indexOf(letter);
+  letterArray.splice(i, 1);
+  return letterArray;
 };
+
+function addArrayElement(letterArray, element) {
+  // function not currently used
+  letterArray.push(element);
+  return letterArray;
+}
 
 function displayString(wordToShow) {
   $("h3").text("");
   $("h3").append(wordToShow);
 };
+
+
+$(document).ready(function() {
+  var word, letterArray;
+  $("#userInput").submit(function(event) {
+    word = $("#wordInput").val();
+    letterArray = lettersToHide(word);
+    var hiddenWord = maskWord(word, letterArray);
+    displayString(hiddenWord);
+    event.preventDefault();
+  });
+
+  $("#letterForm").submit(function(event) {
+    var userInput = $("#letterInput").val();
+    removeArrayElement(letterArray, userInput);
+    var hiddenWord = maskWord(word, letterArray);
+    displayString(hiddenWord);
+    event.preventDefault();
+  });
+});
