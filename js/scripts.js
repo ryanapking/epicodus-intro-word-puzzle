@@ -1,16 +1,24 @@
 // back end logic
 
 function lettersToHide(tempString) {
+  var tempArray = [];
   var lettersArray = tempString.split("");
-  return lettersArray;
+  lettersArray.forEach(function(letter) {
+    if (!tempArray.includes(letter)) {
+      tempArray.push(letter);
+    }
+  });
+  return tempArray;
 }
 
 function maskWord(word, letterArray) {
-  var hiddenWord = word;
-  letterArray.forEach(function(letter) {
-    hiddenWord = hiddenWord.replace(letter, "-");
+  var wordArr = word.split("");
+  wordArr.forEach(function(letter, index) {
+    if(letterArray.includes(letter)){
+      wordArr[index] = "-";
+    }
   });
-  return hiddenWord;
+  return wordArr.join("");
 };
 
 function removeArrayElement(letterArray, letter) {
@@ -43,7 +51,8 @@ function displayString(wordToShow) {
   $("#wordDisplay").append(wordToShow);
 };
 
-function endGame() {
+function endGame(word) {
+  $("#incorrectWord").text(word);
   $("#gameover").show();
   $("#gameplay").hide();
 }
@@ -53,8 +62,11 @@ function endGame() {
 $(document).ready(function() {
   var word, letterArray;
   var wrongLetterArray = [];
+  var randomWords = ["knapsack", "rickshaw", "xylophone", "razzmatazz", "megahertz", "bayou", "microwave", "yachtsman", "whomever", "vaporize"]
   var wrongGuesses = 0;
   $("#userInput").submit(function(event) {
+    $("#userInput").hide();
+    $("#letterForm").show();
     word = $("#wordInput").val().toUpperCase();
     letterArray = lettersToHide(word);
     var hiddenWord = maskWord(word, letterArray);
@@ -69,14 +81,30 @@ $(document).ready(function() {
         wrongLetter(wrongLetterArray, userInput);
       }
       if (wrongLetterArray.length >=6) {
-        endGame();
+        endGame(word);
       }
       var hiddenWord = maskWord(word, letterArray);
       displayString(hiddenWord);
     } else {
       alert("Please enter a single letter");
     }
+    if (word === maskWord(word, letterArray)) {
+      $("#gameplay").hide();
+      $("#correctWord").text(word);
+      $("#winner").show();
+    }
     $("#letterInput").val("");
     event.preventDefault();
+  });
+
+  $("#randomBtn").click(function() {
+    var randomNum = (Math.floor(Math.random() * 10));
+    word = randomWords[randomNum];
+    $("#userInput").hide();
+    $("#letterForm").show();
+    word = word.toUpperCase();
+    letterArray = lettersToHide(word);
+    var hiddenWord = maskWord(word, letterArray);
+    displayString(hiddenWord);
   });
 });

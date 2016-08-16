@@ -1,3 +1,7 @@
-#gameover {
+#gameover, #letterForm {
+  display: none;
+}
+
+#winner {
   display: none;
 }

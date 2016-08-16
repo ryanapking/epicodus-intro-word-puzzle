@@ -9,14 +9,19 @@
   </head>
   <body>
     <div id="gameplay" class="container">
+      <h1>Hangman!</h1>
+      <p>This webpage allows you to create a hangman game. Enter a word into the box, only characters a-z or A-Z.</p>
+      <p>Press the submit button and show the page to your friends to try and guess the word.</p>
+      <p>Guess a <button id="randomBtn">Random Word</button></p>
+      <p>or</p>
       <form id="userInput">
-        <input id="wordInput" type="text" placeholder="Enter a word">
-        <button id="submitBtn" type="submit">Submit your word</button>
+        <input id="wordInput" type="text" placeholder="Enter a word" pattern="[a-zA-Z]*">
+        <button id="submitBtn" type="submit">Submit your own word</button>
       </form>
       <h3 id="wordDisplay"></h3>
       <form id="letterForm">
-        <input id="letterInput" type="text" placeholder="Enter a vowel to show">
-        <button id="letterBtn">Show vowel</button>
+        <input id="letterInput" type="text" placeholder="Enter a Letter to guess" pattern="[a-zA-Z]*">
+        <button id="letterBtn">Guess</button>
       </form>
       <ul>Wrong guesses:
 
@@ -25,7 +30,11 @@
     </div>
     <div id="gameover" class="container">
       <h3>Game Over!</h3>
+      <h4>The word was <span id="incorrectWord"></span></h4>
       <img src="img/6.jpg"></img>
+    </div>
+    <div id="winner" class="container">
+      <h3>You win! The word was <span id="correctWord"></span></h3>
     </div>
   </body>
 </html>
