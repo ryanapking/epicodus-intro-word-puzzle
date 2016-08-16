@@ -5,16 +5,16 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.1.0.js"></script>
     <script src="js/scripts.js"></script>
-    <title>Template</title>
+    <title>Hangman</title>
   </head>
   <body>
     <div id="gameplay" class="container">
       <h1>Hangman!</h1>
       <p>This webpage allows you to create a hangman game. Enter a word into the box, only characters a-z or A-Z.</p>
       <p>Press the submit button and show the page to your friends to try and guess the word.</p>
-      <p>Guess a <button id="randomBtn">Random Word</button></p>
-      <p>or</p>
-      <form id="userInput">
+      <p class="hideMe">Guess a <button id="randomBtn">Random Word</button></p>
+      <p class="hideMe">or</p>
+      <form id="userInput" class="hideMe">
         <input id="wordInput" type="text" placeholder="Enter a word" pattern="[a-zA-Z]*">
         <button id="submitBtn" type="submit">Submit your own word</button>
       </form>

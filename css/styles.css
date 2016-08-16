@@ -1,7 +1,11 @@
-#gameover, #letterForm {
+#gameover, #letterForm, #winner {
   display: none;
 }
 
+#gameover {
+  color: red;
+}
+
 #winner {
-  display: none;
+  color: green;
 }
