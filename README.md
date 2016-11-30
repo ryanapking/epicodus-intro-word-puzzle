@@ -10,8 +10,8 @@ _Allows user to enter a word to have another user try to guess one letter at a t
 
 ## Setup/Installation Requirements
 
-* _Web browser needed_
 * _Open index.html in web browser_
+* _Or view the project on [GitHub pages](https://ryanapking.github.io/epicodus-intro-word-puzzle/)_
 
 _Webpage has been tested using Google Chrome._
 
